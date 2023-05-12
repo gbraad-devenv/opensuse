@@ -7,4 +7,8 @@ RUN groupadd -g 33333 gitpod \
     && useradd -l -u 33333 -g gitpod -md /home/gitpod -s /usr/bin/zsh -p gitpod gitpod \
     && usermod -aG wheel gitpod
 
+RUN zypper update -y \
+        tailscale \
+    && zypper clean -a
+
 USER gitpod
