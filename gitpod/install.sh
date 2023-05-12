@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # clean workspace folder
-#rm -rf /workspace/fedora
-#mkdir /workspace/fedora
-#ln -s /workspace/fedora ~/Projects
-#git init /workspace/fedora
+rm -rf /workspace/opensuse
+mkdir /workspace/opensuse
+ln -s /workspace/opensuse ~/Projects
+git init /workspace/opensuse
 
-#cd ~
+cd ~
 
 exit 0
