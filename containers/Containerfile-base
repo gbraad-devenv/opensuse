@@ -1,4 +1,4 @@
-FROM opensuse/leap:15.2
+FROM opensuse/leap:15.5
 
 # essential packages
 RUN zypper install -y \
@@ -12,7 +12,7 @@ RUN groupadd wheel \
 
 # install tailscale
 RUN zypper --non-interactive addrepo --no-gpgcheck \
-        https://pkgs.tailscale.com/stable/opensuse/leap/15.2/tailscale.repo \
+        https://pkgs.tailscale.com/stable/opensuse/leap/15.5/tailscale.repo \
     && zypper refresh \
     && zypper install -y \
         tailscale \

@@ -1,4 +1,4 @@
-FROM ghcr.io/gbraad-devenv/opensuse/base:15.2
+FROM ghcr.io/gbraad-devenv/opensuse/base:15.5
 
 USER gbraad
 

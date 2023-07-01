@@ -17,6 +17,9 @@ tasks:
     command: |
       sudo ssh-keygen -A && sudo /usr/sbin/sshd
       curl https://github.com/gbraad.keys | tee -a ~/.ssh/authorized_keys
+  - name: docker
+    command: |
+      sudo zypper install -y docker
   - name: tailscale
     command: |
       sudo --preserve-env=TAILSCALE_AUTHKEY /etc/init.d/tailscaled start
