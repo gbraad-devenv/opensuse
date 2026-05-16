@@ -1,0 +1,56 @@
+ARG BASE_IMAGE="ghcr.io/gbraad-dotfiles/opensuse"
+ARG BASE_VERSION="latest"
+
+FROM ${BASE_IMAGE}:${BASE_VERSION}
+
+LABEL org.opencontainers.image.source = "https://github.com/gbraad-devenv/opensuse"
+
+USER root
+
+RUN zypper install -y \
+        mc links lynx wget procps \
+    && zypper clean -a
+
+# optional for notebooks
+RUN zypper install -y \
+        python3-pip \
+        python3-Pygments \
+    && zypper clean -a \
+    && pip install ipykernel
+
+# ranger
+RUN zypper install -y \
+        ranger \
+        highlight \
+    && zypper clean -a
+
+# convenience tools
+RUN zypper install -y \
+        trash-cli \
+        vgrep \
+        fd \
+        ripgrep \
+    && zypper clean -a
+
+# webdav (for tailscale drive shares and nextcloud)
+RUN zypper install -y \
+        davfs2 cadaver \
+    && zypper clean -a
+
+# github client
+RUN zypper --non-interactive addrepo --no-gpgcheck \
+        https://cli.github.com/packages/rpm/gh-cli.repo \
+    && zypper refresh \
+    && zypper install -y \
+        gh \
+    && zypper clean -a
+
+USER gbraad
+
+RUN pip install pygments-style-tomorrownightbright
+
+USER root
+
+RUN systemctl enable tailscaled
+
+ENTRYPOINT ["/sbin/init"]
