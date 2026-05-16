@@ -15,8 +15,8 @@ RUN zypper install -y \
 RUN zypper install -y \
         python3-pip \
         python3-Pygments \
-    && zypper clean -a \
-    && pip install ipykernel
+        python3-ipykernel \
+    && zypper clean -a
 
 # ranger
 RUN zypper install -y \
@@ -47,7 +47,7 @@ RUN zypper --non-interactive addrepo --no-gpgcheck \
 
 USER gbraad
 
-RUN pip install pygments-style-tomorrownightbright
+RUN pip install --break-system-packages pygments-style-tomorrownightbright
 
 USER root
 
